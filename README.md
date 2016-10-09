@@ -1,5 +1,6 @@
 Unofficial Autodesk Backburner
 ==============================
+[![Docker Automated buil](https://img.shields.io/docker/automated/haysclark/backburner.svg?maxAge=2592000)]()
 
 A simple Docker container that runs Autodesk Backburner.
 
