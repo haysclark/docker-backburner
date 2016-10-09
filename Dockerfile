@@ -48,7 +48,7 @@ EXPOSE 29000-30000
 
 # Open ports 45000-65000 to TCP and UDP traffic between the BB Manager and the render nodes if receiving random denials.
 # REF: https://knowledge.autodesk.com/support/3ds-max/troubleshooting/caas/sfdcarticles/sfdcarticles/Backburner-Network-Port-Configuration.html
-#EXPOSE 45000-65000
+EXPOSE 45000-65000
 
 # Start container in "Machine mode"
 CMD ["/sbin/init"]
