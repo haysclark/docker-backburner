@@ -12,7 +12,7 @@ The container is setup to support all or just one of the following services:
 Usage
 -----
 
-    docker run -d haysclark/backburner
+    docker run -d -t haysclark/backburner
 
 Typically you will want to append the following port forwarding information depending what service you are running:
 
@@ -22,7 +22,7 @@ Typically you will want to append the following port forwarding information depe
 
 E.G. if you want to run the Manager and Monitor you would execute:
 
-    docker run -d -p 3234:3234 -p 8080:80 haysclark/backburner
+    docker run -d -t -p 3234:3234 -p 8080:80 haysclark/backburner
 
 Setup
 -----
