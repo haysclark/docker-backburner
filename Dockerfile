@@ -31,6 +31,9 @@ RUN mkdir /usr/discreet/cfg && touch /usr/discreet/cfg/network.cfg
 # Set the workspace to boackburners home
 WORKDIR /usr/discreet/backburner
 
+# Web portal volumes
+VOLUME ["/etc/httpd/auth/", "/etc/httpd/conf"]
+
 # WWW Port
 EXPOSE 80
 
