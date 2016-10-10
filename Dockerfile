@@ -36,19 +36,23 @@ EXPOSE 80
 
 # Manager Port
 EXPOSE 3234
+EXPOSE 3234/udp
 
 # Server Port
 EXPOSE 3233
+EXPOSE 3233/udp
 
 # Job submission from Maya
 EXPOSE 7347
+EXPOSE 7347/udp
 
 # For the ping pong process and going down if the port is blocked
-EXPOSE 29000-30000
+EXPOSE 29000-30000/udp
 
 # Open ports 45000-65000 to TCP and UDP traffic between the BB Manager and the render nodes if receiving random denials.
 # REF: https://knowledge.autodesk.com/support/3ds-max/troubleshooting/caas/sfdcarticles/sfdcarticles/Backburner-Network-Port-Configuration.html
 EXPOSE 45000-65000
+EXPOSE 45000-65000/udp
 
 # Start container in "Machine mode"
 CMD ["/sbin/init"]
