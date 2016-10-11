@@ -1,0 +1,35 @@
+#!/bin/sh
+# Copyright (c) 2016 Hays Clark. All Rights Reserved.
+#
+#set -x
+# The following comments are required by Redhat chkconfig
+# chkconfig: 345 99 06
+# description: discreet backburner general functions and definitions
+
+#
+# This script is used to seed the Backburner server and/or manager in Docker
+#
+
+#
+# main start here
+#
+
+BB_CFG=/usr/discreet/cfg/network.cfg
+BB_CFG_S=/usr/discreet/cfg/network.cfg.sample
+ 
+if [ -f "$BB_CFG" ];
+then
+	echo ""
+else
+   if [ -f "$BB_CFG_S" ];
+   then
+      echo "Generating Backburner Manager network.cfg"
+      # create a docker friendly config file
+      cp $BB_CFG_S $BB_CFG
+      # create and set the manager UUID
+      sed -i '/^UUID/s/$/'"`uuidgen | tr '[:lower:]' '[:upper:]'`"'/' $BB_CFG
+   else
+      echo "File $BB_CFG_S does not exist!"
+      exit 1
+   fi
+fi

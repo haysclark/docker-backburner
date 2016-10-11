@@ -26,7 +26,21 @@ RUN mkdir -p $TEMP_PATH && cd $TEMP_PATH && \
     rm -rf ${TEMP_PATH}
 
 # CREATE missing file that caused Web service error.
-RUN mkdir /usr/discreet/cfg && touch /usr/discreet/cfg/network.cfg
+RUN mkdir /usr/discreet/cfg 
+COPY network.cfg.sample /usr/discreet/cfg/network.cfg.sample
+COPY backburner_docker /tmp/backburner_docker
+ARG BB_DOCKER=/etc/rc.d/init.d/backburner_docker
+RUN cat /tmp/backburner_docker > $BB_DOCKER && \
+    chown root:root $BB_DOCKER && \
+    chmod 755 $BB_DOCKER && \
+    chkconfig --add backburner_docker && \
+    chkconfig --level 345 backburner_docker on
+
+RUN sed -i '/backburner_general/a\\n# Source Backburner general functions and definitions\n. /etc/init.d/backburner_docker' /etc/init.d/backburner_manager
+
+# Disable IPv6
+RUN echo "net.ipv6.conf.all.disable_ipv6 = 1" >> /etc/sysctl.conf && \
+    echo "net.ipv6.conf.default.disable_ipv6 = 1" >> /etc/sysctl.conf
 
 # Set the workspace to boackburners home
 WORKDIR /usr/discreet/backburner
@@ -58,4 +72,4 @@ EXPOSE 45000-65000
 EXPOSE 45000-65000/udp
 
 # Start container in "Machine mode"
-CMD ["/sbin/init"]
+CMD /sbin/init

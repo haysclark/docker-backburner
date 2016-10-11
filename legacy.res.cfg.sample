@@ -1,0 +1,48 @@
+#
+# legacy.res.cfg
+#
+#
+# The purpose of this file is to configure internal per-resolution
+# defaults.  This is used when the information is missing from metadata
+# of archives or libraries.  Usually, this happens when trying to open
+# older archives or libraires.
+# Format:
+# 
+# [Width] [Height] [AspectRatio] [ScanFormat] [FrameRate] [Name]
+# 
+# ScanFormat is one of F1, F2 or P,
+#
+# Name is limited to 32 characters.
+#
+# FrameRate is specified as follow:
+#   23.97 fps => 2397
+#   24 fps    => 2400
+#   25 fps    => 2500
+#   29.97 fps => 2997
+#   30 fps    => 3000
+#   50 fps    => 5000
+#   59.98 fps => 5998
+#   60 fps    => 6000
+#
+#   0 means any frame rate and will usually be mapped to project rate.
+#
+# eg:
+# 720 486 1.333 F1 2997 NTSC
+# 
+
+0	0	1.000000	P	2400	CUSTOM_RES
+720	486	1.333333	F1	2997	NTSC
+720	576	1.333333	F1	2500	PAL
+640	480	1.333333	P	0	LDTV
+1280	720	1.777778	P	6000	MDTV
+1920	1080	1.777778	P	2400	HDTV
+1920	1036	1.776062	F1	2997	HDTV_240M
+1920	1440	1.333333	P	2400	SPIRIT_43
+1828	1332	1.372372	P	2400	ACADEMY_HALF
+3656	2664	1.372372	P	2400	ACADEMY_FULL
+1828	1556	2.349614	P	2400	CINESCOPE_HALF
+3656	3112	2.349614	P	2400	CINESCOPE_FULL
+2048	1556	1.316195	P	2400	SUPER35_HALF
+2048	1536	1.333333	P	2400	SUPER35_HALF_43
+4096	3112	1.316195	P	2400	SUPER35_FULL
+3072	2048	1.500000	P	2400	VISTA_HALF
